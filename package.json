@@ -1,0 +1,29 @@
+{
+  "name": "hyperscale-application-showcase",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "khemphet.souvannaphasy@gmail.com",
+  "private": "true",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "redis": "^4.6.13"
+  },
+  "scripts": {
+    "start:watch": "bun run --watch ./index.ts",
+    "start": "bun run ./dist/index.ts",
+    "build": "bun build --compile ./src/index.ts --outfile=dist/hyperscale-application-showcase",
+    "docker:build": "docker build --pull -t hyperscale-application-showcase .",
+    "docker:build:live": "docker build --pull -t hyperscale-application-showcase:live -f ./Dockerfile.live .",
+    "docker:start": "docker-compose -f docker-compose.yml up -d",
+    "docker:start:live": "docker-compose -f docker-compose.live.yml up -d",
+    "docker:stop:live": "docker-compose -f docker-compose.live.yml up -d",
+    "docker:logs:live": "docker-compose -f docker-compose.live.yml logs -f"
+  }
+}
