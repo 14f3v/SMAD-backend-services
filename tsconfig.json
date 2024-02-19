@@ -17,6 +17,39 @@
     "skipLibCheck": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "paths": {
+      "@server": [
+        "./src/server.ts"
+      ],
+      "@constants/*": [
+        "./src/constants/*"
+      ],
+      "@models/*": [
+        "./src/models/*"
+      ],
+      "@repos/*": [
+        "./src/repos/*"
+      ],
+      "@routes/*": [
+        "./src/routes/*"
+      ],
+      "@controllers/*": [
+        "./src/controllers/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "@middlewares/*": [
+        "./src/middlewares/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@configs/*": [
+        "./src/configs/*"
+      ],
+    }
   }
 }
