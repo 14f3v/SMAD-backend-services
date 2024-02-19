@@ -1,1 +1,0 @@
-# hyperscale-application-showcase
