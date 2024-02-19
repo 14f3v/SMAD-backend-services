@@ -1,6 +1,7 @@
 import ApplicationDetail, { ApplicationDetailModel } from "@services/applicationDetail";
 class DependenciesInjection {
     private static instance: DependenciesInjection;
+    public applicationDetail: ApplicationDetailModel = new ApplicationDetailModel();
     public static getInstance(): DependenciesInjection {
         if (!DependenciesInjection.instance) {
             DependenciesInjection.instance = new DependenciesInjection();
@@ -8,10 +9,7 @@ class DependenciesInjection {
         return DependenciesInjection.instance;
     };
 
-    private _applicationDetail?: ApplicationDetailModel;
     private _nodeTLSUnAuthorizedRejection: boolean = false;
-    public get applicationDetail() { return this._applicationDetail! };
-    public set applicationDetail(_applicationDetail: ApplicationDetailModel) { this._applicationDetail = _applicationDetail };
     public get nodeTLSUnAuthorizedRejection() { return this._nodeTLSUnAuthorizedRejection };
     public set nodeTLSUnAuthorizedRejection(_nodeTLSUnAuthorizedRejection: boolean) { this._nodeTLSUnAuthorizedRejection = _nodeTLSUnAuthorizedRejection };
 

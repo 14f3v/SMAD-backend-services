@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/': "http://hyperscale-application-showcase:4431/"
+      '/': "http://connect.hyperscaleapplication.showcase:4431/"
     }
   }
 })
