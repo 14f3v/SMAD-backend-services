@@ -1,0 +1,9 @@
+version: "3"
+services:
+  client-minion:
+    image: "client-image:live"
+    scale: 3
+    restart: always
+    volumes:
+    - ".:/usr/src/app:rw"
+    - "./hosts.conf:/etc/hosts:rw"
