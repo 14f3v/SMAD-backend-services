@@ -13,7 +13,6 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@14f3v/logger": "git+https://14f3v@github.com/14f3v/logger.git#1.0.0",
     "@types/command-line-args": "^5.2.3",
     "@types/connect-redis": "^0.0.18",
     "@types/cookie-parser": "^1.4.6",
@@ -30,10 +29,12 @@
     "helmet": "^7.1.0",
     "morgan": "^1.10.0",
     "redis": "^4.6.13",
-    "socket.io": "^4.7.4"
+    "socket.io": "^4.7.4",
+    "socket.io-client": "^4.7.4"
   },
   "scripts": {
-    "start:watch": "bun run --watch ./index.ts",
+    "start:watch": "bun run --bun --watch ./index.ts",
+    "start:watch:client": "bun run --bun --watch ./client.ts",
     "start": "bun run ./dist/index.ts",
     "build": "bun build --compile ./src/index.ts --outfile=dist/hyperscale-application-showcase",
     "docker:build": "docker build --pull -t hyperscale-application-showcase .",
@@ -41,6 +42,10 @@
     "docker:start": "docker-compose -f docker-compose.yml up -d",
     "docker:start:live": "docker-compose -f docker-compose.live.yml up -d",
     "docker:stop:live": "docker-compose -f docker-compose.live.yml up -d",
-    "docker:logs:live": "docker-compose -f docker-compose.live.yml logs -f"
+    "docker:logs:live": "docker-compose -f docker-compose.live.yml logs -f",
+    "build:client": "docker build --pull -t client-image:live -f ./client.Dockerfile.live .",
+    "stop:client": "docker-compose -f spawnclient.compose.live.yml up -d",
+    "spawn:client": "docker-compose -f spawnclient.compose.live.yml up -d",
+    "logs:client": "docker-compose -f spawnclient.compose.live.yml logs -f"
   }
 }
