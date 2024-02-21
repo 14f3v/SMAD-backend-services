@@ -1,6 +1,9 @@
 enum SocketIOEmittion {
-    CONNECT = 'conntect',
-    EMIT_NEW_USER_CONNTECTED = 'EMIT_NEW_USER_CONNTECTED',
+    CONNECTION = 'connection',
+    CONNECT = 'connect',
+    DISCONNECT = 'disconnect',
+    USER_REGISTERED = 'USER_REGISTERED',
+    USERS_ONLINE = 'USER_REGISTERED',
 };
 
 export default SocketIOEmittion;
