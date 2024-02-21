@@ -19,7 +19,7 @@ user.username = 'test';
 user.socketId = socket.id!;
 socket.on(SocketIOEmittion.CONNECT, () => {
     user.socketId = socket.id!;
-    socket.emit(SocketIOEmittion.USER_REGISTERED, JSON.stringify(user));
+    socket.emit(SocketIOEmittion.USER_REGISTERED, user);
 });
 
 socket.on(SocketIOEmittion.USERS_ONLINE, (callback) => {

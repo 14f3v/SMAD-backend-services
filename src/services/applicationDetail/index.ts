@@ -2,17 +2,16 @@ import Config from '@constants/configs';
 import { name, version } from '../../../package.json';
 import os from 'os';
 import DependenciesInjection from '@services/dependenciesInjection';
-import logger from '@14f3v/logger';
 export default function ApplicationDetail(): TApplicationDetail {
 
-    const dependenciesInjection =  DependenciesInjection.getInstance();
+    const dependenciesInjection = DependenciesInjection.getInstance();
     const hostname = os.hostname();
     // const context: ApplicationDetailModel = new ApplicationDetailModel();
     dependenciesInjection.applicationDetail.name = name;
     dependenciesInjection.applicationDetail.version = version;
     dependenciesInjection.applicationDetail.hostname = hostname;
     dependenciesInjection.applicationDetail.port = Config.APPLICATION_PORT;
-    Object.entries(dependenciesInjection.applicationDetail).map(([key, values]) => logger.info('[', key.toUpperCase(), ']:', values));
+    Object.entries(dependenciesInjection.applicationDetail).map(([key, values]) => console.log('[ ' + key.toUpperCase() + ' ]: ' + values));
     return dependenciesInjection.applicationDetail;
 };
 
