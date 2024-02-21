@@ -26,7 +26,7 @@ class RedisServices {
 
     public async broadcastingNewApplicationInstanceMember() {
         await this.publisher?.publish(RedisEmittion.LISTEN_MESSAGE, this.jsonSerialize(this.dependenciesInjection.applicationDetail));
-        console.log(this.jsonSerialize(this.dependenciesInjection.applicationDetail))
+        // logger.info(this.jsonSerialize(this.dependenciesInjection.applicationDetail))
     }
 
     public async publishNewConnectionPoolMember() {
