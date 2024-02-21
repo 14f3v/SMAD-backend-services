@@ -15,6 +15,7 @@ import CookiesProps from '@constants/cookies';
 /* //? import services */
 import RedisServices from '@services/redis';
 import RedisEmittion from '@constants/redisEmittion';
+import SocketIOEmittion from '@constants/socketIOemittion';
 const redisConnection = new RedisServices();
 const app = express();
 
@@ -36,7 +37,6 @@ app.use(cookieParser(CookiesProps.secret));
 //     resave: false,
 //     saveUninitialized: false,
 // } as SessionOptions));
-
 
 app.use(async (req, res, next) => {
     redisConnection.publishNewConnectionPoolMember();
