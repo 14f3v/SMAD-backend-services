@@ -45,8 +45,8 @@ export default class SocketIOService {
         this.messageEmittion = new MessageEmittion();
         this.messageEmittion.hostname = hostname();
         this.messageEmittion.message = connectionPools as any;
-        this._socketInstance.emit(SocketIOEmittion.USERS_ONLINE, this.messageEmittion);
-        this._socketInstance.broadcast.emit(SocketIOEmittion.USERS_ONLINE, this.messageEmittion);
+        this._socketInstance.emit(SocketIOEmittion.USERS_ONLINE, this.messageEmittion); // ? emit back to socket
+        this._socketInstance.broadcast.emit(SocketIOEmittion.USERS_ONLINE, this.messageEmittion); // ? broadcast emittion to another socket
     };
 
     /**
