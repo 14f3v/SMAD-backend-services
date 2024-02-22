@@ -59,7 +59,8 @@ export default class SocketIOService {
             newConnection.socketId = this._socketInstance.id;
             newConnection.username = io.username;
             newConnection.hostname = hostname();
-            connectionPools = [...connectionPools ?? [], newConnection];
+            connectionPools = [...connectionPools ?? [], newConnection]; // ? TODO: this should be turn into a complete datbase integration in session table
+            /* //? fact: better store a connection pool member into redis[EX] */
             this.repositories.addUser(newConnection);
             this.broadcastingUsersOnline();
         });
