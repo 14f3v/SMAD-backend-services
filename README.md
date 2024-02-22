@@ -1,43 +1,63 @@
 # hyperscale-application-showcase
-
-## Description:
-
-    - This project serves as a showcase for building scalable real-time applications using modern technologies. The serverside application is powered by bun.sh runtime and Socket.IO for efficient real-time communication. Redis is integrated to manage connection pools, enabling the system to handle millions of concurrent connections.
-
-    - The frontend application, developed with ReactJS and Socket.IO, facilitates interaction with the server via WebSocket protocols, ensuring seamless communication between clients and servers.
+This project serves as a showcase for building scalable real-time applications using modern technologies. The serverside application is powered by bun.sh runtime and Socket.IO for efficient real-time communication. Redis is integrated to manage connection pools, enabling the system to handle millions of concurrent connections
 
 
-## Purpose:
+## Articles
+you can reach out a full articles in article directory 
+- English article Click [here](https://github.com/14f3v/hyperscale-application-showcase/blob/main/articles/EN_Multiplexing_System_Architecture_Scalability.md)
 
-    The purpose of this project is to provide developers with insights into system architecture scalability, multiplexing protocols, and the importance of horizontal scaling in real-time applications.
+## Start project
+clone git repository and cd to the main project directory and install dependencies
 
+incase of using [bun.sh](https://bun.sh)
+```bash
+cd hyperscale-application-showcase
+bun install
+```
 
-## Introduction
+incase of using [npm]([https://npm.sh](https://www.npmjs.com))
+```bash
+cd hyperscale-application-showcase
+npm install
+```
 
-    Network Protocol. 
-    bun.sh.
-    WebSocket.
-    Multiplexing Protocols. 
-    Redis.
-    Redis Pub/Sub Paradigm.
+incase of using [yarn]([[https://npm.sh](https://www.npmjs.com](https://yarnpkg.com)))
+```bash
+cd hyperscale-application-showcase
+yarn
+```
 
-    **Network Protocol**: A brief overview of network protocols and their significance in real-time applications.
+### Start sevrer application
+There are so many condition to start a server application for example.
 
-        - **bun.sh**: Introduction to bun.sh runtime and its role in powering the serverside application.
-        - **WebSocket Protocol**: Explanation of WebSocket protocol and its benefits in enabling bidirectional communication between clients and servers.
-        - **Multiplexing Protocols**: Understanding the importance of multiplexing protocols in efficiently handling multiple concurrent connections.
-        - **Redis**: Overview of Redis as an in-memory database and its utilization in managing connection pools.
-        - **Redis Pub/Sub Paradigm**: Introduction to Redis Pub/Sub messaging paradigm for facilitating communication between distributed server instances.
+if you would like to start server application as a dry mode, you can use
+```bash
+bun run --b index.ts
+```
 
+if you would like to start server application as a watch mode, you can use
+```bash
+bun run --watch --b index.ts
+```
+or you can use
+```bash
+bun run start:watch
+```
+to run multiple replicas server side application container as a watch mode **depends on your code changed**. you can use a command-line
+```bash
+bun run docker:start:live
+```
 
-    **Hyper Scalability, Vertical/Horizontal Scaling, Load Balancing, and Round-Robin**:
+To run a minion from server-side to simulate and understanding a flow of concept, you can use a command-line to run
+```bash
+bun run start:watch:client
+```
+and similar concept of spawning a multiple minion, you can use docker-compose to replicate a container base on a project director volumes mount. you can use a command-line
+```bash
+bun run spawn:client
+```
+- facts: in default spawnclient.compose.live.yml config file setting a replicas of docker container at 3. you can scale a container instance out whenever you need. for example command-line
+- ```bash
+  docker-compose -f spawnclient.compose.live.yml scale client-minion=10
+  ```
 
-        - **Hyper Scalability**: Discussing the need for hyper scalability in modern real-time applications.
-        - **Vertical/Horizontal Scaling**: Explaining the differences between vertical and horizontal scaling and the advantages of horizontal scaling.
-        - **Load Balancing**: Overview of load balancing techniques to distribute traffic evenly across multiple server instances.
-        - **Round-Robin**: Introduction to round-robin load balancing algorithm and its role in maintaining system performance.
-
-
-## Conclusion
-
-    In conclusion, this project aims to empower developers with the knowledge and tools to build scalable real-time applications. By understanding the principles of scalable architecture and multiplexing protocols, developers can design robust systems capable of handling millions of concurrent connections efficiently.
