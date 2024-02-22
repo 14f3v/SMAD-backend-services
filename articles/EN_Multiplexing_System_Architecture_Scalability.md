@@ -2,13 +2,13 @@
 In the dynamic landscape of modern technology, the demand for scalable real-time applications has skyrocketed. As developers strive to create systems capable of handling millions of concurrent connections, understanding the intricacies of system architecture scalability and multiplexing protocols becomes paramount. In this article, we delve into the architecture of scalable real-time applications, focusing on the utilization of bun.sh, WebSocket, and Redis to achieve hyper scalability and efficient communication.
 
 
-## Description:
+## Description
 
 This project serves as a showcase for building scalable real-time applications using modern technologies. The serverside application is powered by bun.sh runtime and Socket.IO for efficient real-time communication. Redis is integrated to manage connection pools, enabling the system to handle millions of concurrent connections.
 The frontend application, developed with ReactJS and Socket.IO, facilitates interaction with the server via WebSocket protocols, ensuring seamless communication between clients and servers.
 
 
-## Purpose:
+## Purpose
 
 The purpose of this project is to provide developers with insights into system architecture scalability, multiplexing protocols, and the importance of horizontal scaling in real-time applications.
 
