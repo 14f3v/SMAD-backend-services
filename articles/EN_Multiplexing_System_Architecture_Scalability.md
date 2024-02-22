@@ -107,23 +107,23 @@ In conclusion, the journey to building scalable real-time applications is fraugh
 - Author: Mark Crovella, Robert L. Carter
 - Published in: IEEE Internet Computing
 - Year: 1996
-- DOI: 10.1109/MIC.1996.507176
+- DOI: [10.1109/MIC.1996.507176]()
 
 ### Scalability and Elasticity in Cloud Computing: A Systematic Review
 - Authors: Muhammad Ovais Ahmad, Jie Tao, Nasir Ghani
 - Published in: IEEE Access
 - Year: 2018
-- DOI: 10.1109/ACCESS.2018.2832215
+- DOI: [10.1109/ACCESS.2018.2832215]()
 
 ### Horizontal vs. Vertical Scaling in Web Applications: A Case Study
 - Authors: Srdjan Stevanetic, Ivan Lukovic, Vladimir Kovacevic, Zoran Marjanovic
 - Published in: 2016 12th Symposium on Neural Networks and Applications (NEUREL)
 - Year: 2016
-- DOI: 10.1109/NEUREL.2016.7809653
+- DOI: [10.1109/NEUREL.2016.7809653]()
 
 ### An Empirical Study of Horizontal and Vertical Scalability of Virtual Network Functions
 - Authors: Alex Galis, Anastasios Zafeiropoulos, Carlos J. Bernardos, David Sánchez, Jose Manuel García, María Concepción Aguilera
 - Published in: IEEE Transactions on Network and Service Management
 - Year: 2017
-- DOI: 10.1109/TNSM.2017.2705718
+- DOI: [10.1109/TNSM.2017.2705718]()
 
