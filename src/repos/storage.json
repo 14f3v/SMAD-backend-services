@@ -1,0 +1,15 @@
+{
+    "users": [
+        {
+            "id": "",
+            "username": ""
+        }
+    ],
+    "messages": [
+        {
+            "from_username": "",
+            "to_username": "",
+            "message": ""
+        }
+    ]
+}
