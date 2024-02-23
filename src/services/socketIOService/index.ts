@@ -1,9 +1,10 @@
+import { socketIO } from '@server';
 import type { DisconnectReason, Socket } from 'socket.io';
 import SocketIOEmittion from '@constants/socketIOemittion';
 import { hostname } from 'os';
 import Repositories, { Message } from '@repos/index';
 import RedisServices from '@services/redis';
-let connectionPools: ConnectionPool[] = [];
+// let connectionPools: ConnectionPool[] = [];
 
 class WebsocketConnectionPool {
     private static instance: WebsocketConnectionPool;
@@ -111,19 +112,25 @@ export default class SocketIOService {
      */
     public listenOnChatMessage() {
         this._socketInstance.on(SocketIOEmittion.CHAT_MESSAGE, (message) => {
+            // ? { username // destination username, socketId destination socketId, message } from source
             const senderUser = this.clientConnection.pools.find(({ socketId }) => socketId == this._socketInstance.id);
-            const destinationReciver = this.clientConnection.pools.find(({ username }) => username == message.username);
+            const destinationReciver = this.clientConnection.pools.find(({ username, socketId }) => username == message.username && socketId == message.socketId);
             const validMessage = new Message();
             validMessage.message = message.message;
             validMessage.to_username = message.username;
+
             if (senderUser) {
                 const { username: senderUsername } = senderUser;
                 validMessage.username = senderUsername;
             }
 
             if (destinationReciver) {
-                // this._socketInstance
+                const { socketId } = destinationReciver;
+                message.username = senderUser?.username!;
+                message.socketId = senderUser?.socketId!;
                 console.log('[', 'EMIT DIRECT MESSAGE', ']', validMessage, '\n');
+                this._socketInstance.to(socketId).emit(SocketIOEmittion.CHAT_MESSAGE, message);
+                this.repositories.postMessage(message);
             }
 
             else {
@@ -131,7 +138,6 @@ export default class SocketIOService {
                 console.log('[', 'PUBLISH MESSAGE THROUGHT OUT', ']', validMessage, '\n');
             }
 
-            this.repositories.postMessage(message);
         });
     };
 

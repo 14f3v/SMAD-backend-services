@@ -8,7 +8,7 @@ class SpawnMinion {
     private randomTime = Number(`${getRandomSeed().toString().split('')[0]}0000`);
     private usersOnline: UserModel[] = [];
     constructor(url?: string) {
-        this.socket = socketIOCreateClient('ws://host.hyperscaleapplicationshowcase.com:8070', {
+        this.socket = socketIOCreateClient('ws://host.hyperscaleapplicationshowcase.com:3000', {
             transports: ['websocket']
         }).connect(); // ? this should be apply by url
         this.initialize();
@@ -26,6 +26,7 @@ class SpawnMinion {
     private initialize() {
         this.listenOnConnection();
         this.listenOnUserOnline();
+        this.listenOnGreetingRandomOnlineUser();
         this.getUserData();
         // console.log(this.randomTime);
         const timeOut = setInterval(() => this.greetingRandomOnlineUser(), this.randomTime);
@@ -89,25 +90,27 @@ class SpawnMinion {
 
     private listenOnUserOnline() {
         this.socket.on(SocketIOEmittion.USERS_ONLINE, (callback) => {
-            console.log('listenOnUserOnline', callback);
             console.log(JSON.stringify(callback, null, 4));
             this.usersOnline = callback.message || [];
-            console.log('usersOnline', this.usersOnline.length);
         });
     };
 
     private greetingRandomOnlineUser() {
-        // console.log("greetingUSer");
-        // console.log("greetingUSer", this.usersOnline);
         const randomUserIndex: number = Math.floor(Math.random() * this.usersOnline.length);
         const message = new MessageEmit();
         const randomUser: IUserModel = this.usersOnline[randomUserIndex];
         message.username = randomUser.username;
         message.socketId = randomUser.socketId;
         message.message = this.randomSentence();
-        console.log(message);
+        console.log('[', 'EMIT', SocketIOEmittion.CHAT_MESSAGE, ']:', message);
         this.socket.emit(SocketIOEmittion.CHAT_MESSAGE, message);
     };
+
+    private listenOnGreetingRandomOnlineUser() {
+        this.socket.on(SocketIOEmittion.CHAT_MESSAGE, (message: MessageEmit) => {
+            console.log('[', 'RECIVED', SocketIOEmittion.CHAT_MESSAGE, ']:', message);
+        });
+    }
 };
 new SpawnMinion();
 
