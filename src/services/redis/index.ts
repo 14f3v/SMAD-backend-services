@@ -4,6 +4,7 @@ import SocketIOEmittion from '@constants/socketIOemittion';
 import { createClient, type RedisClientType } from 'redis';
 import InitializePool from './InitializePools';
 import DependenciesInjection from '@services/dependenciesInjection';
+import type { TODO_TYPE } from 'src/types';
 
 class RedisServices {
     private static instance: RedisServices;
@@ -23,14 +24,13 @@ class RedisServices {
         return RedisServices.instance;
     };
 
-    public jsonSerialize(context: any) {
+    public jsonSerialize(context: TODO_TYPE) {
         if (typeof context == 'string') context = JSON.parse(context);
-        else context = JSON.stringify(context)
-
+        else context = JSON.stringify(context);
         return context;
     };
 
-    public async broadcastingNewApplicationInstanceMember(conext?: any) {
+    public async broadcastingNewApplicationInstanceMember(conext?: TODO_TYPE) {
         this.publisher.publish(RedisEmittion.LISTEN_MESSAGE, this.jsonSerialize(this.dependenciesInjection.applicationDetail));
     }
 
@@ -50,13 +50,12 @@ class RedisServices {
         await this.publisher.connect();
         this.subscriber.on(RedisEmittion.LISTEN_MESSAGE, InitializePool);
         this.subscriptionOnClientConnectionPool();
-        // this.listenOnInterNodeMeesageMessage();
     };
 
     /**
      * publishInterNodeMeesageMessage
      */
-    public publishInterNodeMeesageMessage(socketIOemittion: SocketIOEmittion, message: any) {
+    public publishInterNodeMeesageMessage(socketIOemittion: SocketIOEmittion, message: TODO_TYPE) {
         console.log('[ [REDIS].[INTER_NODE].[EMIT]:', socketIOemittion, ']:', this.jsonSerialize(message));
         this.publisher.publish(socketIOemittion, this.jsonSerialize(message));
     };
@@ -64,7 +63,7 @@ class RedisServices {
     /**
      * listenOnInterNodeMeesageMessage
      */
-    public listenOnInterNodeMeesageMessage<T = undefined>(callback?: T | any) {
+    public listenOnInterNodeMeesageMessage<T = undefined>(callback?: T | TODO_TYPE) {
         this.subscriber.subscribe(SocketIOEmittion.CHAT_MESSAGE, (message) => {
             console.log('[ [REDIS].[INTER_NODE].[RECIVED]:', SocketIOEmittion.CHAT_MESSAGE, ']:', this.jsonSerialize(message));
             if (callback) callback(this.jsonSerialize(message));
@@ -72,9 +71,8 @@ class RedisServices {
     };
 };
 
-const redisConnection: any = /* appsettings.redisConnection */ {
+const redisConnection: TODO_TYPE = /* appsettings.redisConnection */ {
     url: ['redis://', Config.REDIS_HOST, ':', Config.REDIS_PORT].join(''),
-
 } as any;
 
 
