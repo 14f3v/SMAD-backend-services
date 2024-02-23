@@ -6,6 +6,24 @@
   "private": "true",
   "module": "index.ts",
   "type": "module",
+  "repository": {
+    "url": "https://github.com/14f3v/multiplexing-applications-scalability-showcase.git"
+  },
+  "licenses": [
+    {
+      "url": "https://github.com/14f3v/multiplexing-applications-scalability-showcase?tab=MIT-1-ov-file"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/14f3v/multiplexing-applications-scalability-showcase/issues/new"
+  },
+  "contributors": [
+    {
+      "email": "khemphet.souvannaphasy@gmail.com",
+      "url": "https://github.com/14f3v",
+      "name": "Khemphet SOUVANNAPHASY"
+    }
+  ],
   "devDependencies": {
     "@types/bun": "latest"
   },
