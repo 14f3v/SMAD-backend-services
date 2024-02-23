@@ -8,8 +8,8 @@
             "type": "bun",
             "internalConsoleOptions": "neverOpen",
             "request": "launch",
-            "name": "test write file",
-            "program": "src/repos/testWriteFile.ts",
+            "name": "debug mion",
+            "program": "client.ts",
             "cwd": "${workspaceFolder}",
             "stopOnEntry": false,
             "watchMode": false

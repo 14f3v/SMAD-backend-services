@@ -44,7 +44,7 @@
     "docker:stop:live": "docker-compose -f docker-compose.live.yml up -d",
     "docker:logs:live": "docker-compose -f docker-compose.live.yml logs -f",
     "build:client": "docker build --pull -t client-image:live -f ./client.Dockerfile.live .",
-    "stop:client": "docker-compose -f spawnclient.compose.live.yml up -d",
+    "stop:client": "docker-compose -f spawnclient.compose.live.yml down",
     "spawn:client": "docker-compose -f spawnclient.compose.live.yml up -d",
     "logs:client": "docker-compose -f spawnclient.compose.live.yml logs -f"
   }
