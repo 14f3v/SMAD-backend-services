@@ -8,6 +8,5 @@ import SocketIOService from '@services/socketIOService';
 export default (async () => {
     server.listen(Config.APPLICATION_PORT, new DependenciesInjection().initInstance);
     socketIO.on(SocketIOEmittion.CONNECTION, (socket) => new SocketIOService(socket));
-    // socketIO.sockets.on(SocketIOEmittion.CONNECTION, (socket) => new SocketIOService(socket));
     return;
 })();
