@@ -2,7 +2,7 @@ version: "3"
 services:
   client-minion:
     image: "client-image:live"
-    scale: 1000
+    scale: 10
     restart: always
     volumes:
     - ".:/usr/src/app:rw"
