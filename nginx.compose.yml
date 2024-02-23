@@ -1,13 +1,16 @@
 version: "3"
-proxy:
-  image: "proxy-has:latest"
-  scale: 1
-  ports: 
-  - "443:443/tcp"
-  - "443:443/udp"
-  - "80:80/tcp"
-  - "80:80/udp"
-  restart: always
-  volumes:
-  - "./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:rw"
-  - "./selfsign-ssl/:/etc/nginx/certs/:rw"
+services:
+  proxy:
+    image: "proxy-has:latest"
+    scale: 1
+    ports: 
+    # - "4431:443/tcp"
+    # - "4431:443/udp"
+    - "8070:80/tcp"
+    - "8070:80/udp"
+    restart: always
+    volumes:
+    - "./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:rw"
+    - "./selfsign-ssl/certificate.pem:/etc/nginx/certs/certificate.pem:rw"
+    - "./selfsign-ssl/privatekey.pem:/etc/nginx/certs/privatekey.pem:rw"
+    - "./hosts.conf:/etc/hosted:rw"

@@ -1,6 +1,7 @@
 FROM nginx:latest
 
-COPY ./conf.d /etc/nginx/conf.d
+COPY ./nginx/conf.d /etc/nginx/conf.d
+COPY ./selfsign-ssl/ /etc/nginx/certs/
 
 EXPOSE 80 443
 

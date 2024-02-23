@@ -2,9 +2,9 @@ version: "3"
 services:
   hyperscale-application-showcase:
     image: "hyperscale-application-showcase:live"
-    scale: 3
+    scale: 6
     ports: 
-    - "3001-3006:3000"
+    - "3000-3006:3000"
     restart: always
     volumes:
     - ".:/usr/src/app:rw"

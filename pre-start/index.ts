@@ -6,7 +6,7 @@
 import path from 'path';
 import dotenv from 'dotenv';
 import commandLineArgs from 'command-line-args';
-
+import RedisServices from '@services/redis';
 
 
 (() => {
@@ -26,4 +26,5 @@ import commandLineArgs from 'command-line-args';
     if (result2.error) {
         throw result2.error;
     }
+    new RedisServices();
 })();

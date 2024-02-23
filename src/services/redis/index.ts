@@ -8,8 +8,13 @@ class RedisServices {
     private static instance: RedisServices;
     private dependenciesInjection = DependenciesInjection.getInstance();
     public connection: RedisClientType = createClient(redisConnection);
-    public subscriber?: RedisClientType/*  = this.connection.duplicate() */;
-    public publisher?: RedisClientType/*  = this.connection.duplicate() */;
+    public subscriber: RedisClientType/*  = this.connection.duplicate() */;
+    public publisher: RedisClientType/*  = this.connection.duplicate() */;
+    constructor() {
+        this.subscriber = this.connection.duplicate()
+        this.publisher = this.subscriber.duplicate()
+        this.initialize();
+    }
     public static getInstance(): RedisServices {
         if (!RedisServices.instance) {
             RedisServices.instance = new RedisServices();
@@ -24,8 +29,8 @@ class RedisServices {
         return context;
     };
 
-    public async broadcastingNewApplicationInstanceMember() {
-        await this.publisher?.publish(RedisEmittion.LISTEN_MESSAGE, this.jsonSerialize(this.dependenciesInjection.applicationDetail));
+    public async broadcastingNewApplicationInstanceMember(conext?: any) {
+        this.publisher.publish(RedisEmittion.LISTEN_MESSAGE, this.jsonSerialize(this.dependenciesInjection.applicationDetail));
         // logger.info(this.jsonSerialize(this.dependenciesInjection.applicationDetail))
     }
 
@@ -34,20 +39,17 @@ class RedisServices {
         await this.publisher?.publish(RedisEmittion.INITIALIZE_CONNECTION_POOL_MEMBER, 'hello');
     };
 
+    private async subscriptionOnClientConnectionPool() {
+        this.subscriber.subscribe(RedisEmittion.INITIALIZE_CONNECTION_POOL_MEMBER, message => {
+            console.log('[', RedisEmittion.INITIALIZE_CONNECTION_POOL_MEMBER, ']:', this.jsonSerialize(message));
+        });
+    };
+
     public async initialize() {
-        this.subscriber = this.connection.duplicate()
-        this.publisher = this.subscriber.duplicate()
         await this.subscriber.connect();
         await this.publisher.connect();
         this.subscriber.on(RedisEmittion.LISTEN_MESSAGE, InitializePool);
-        this.subscriber.on(RedisEmittion.INITIALIZE_CONNECTION_POOL_MEMBER, message => {
-            console.log('[', RedisEmittion.INITIALIZE_CONNECTION_POOL_MEMBER, ']:', this.jsonSerialize(message));
-        });
-        await this.subscriber.subscribe(RedisEmittion.INITIALIZE_CONNECTION_POOL_MEMBER, message => {
-            console.log('[', RedisEmittion.INITIALIZE_CONNECTION_POOL_MEMBER, ']:', this.jsonSerialize(message));
-        });
-
-        // await this.broadcastingNewApplicationInstanceMember();
+        this.subscriptionOnClientConnectionPool();
     };
 };
 

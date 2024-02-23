@@ -8,9 +8,19 @@ class SpawnMinion {
     private randomTime = Number(`${getRandomSeed().toString().split('')[0]}0000`);
     private usersOnline: UserModel[] = [];
     constructor(url?: string) {
-        this.socket = socketIOCreateClient('ws://host.hyperscaleapplicationshowcase.com:3000').connect(); // ? this should be apply by url
+        this.socket = socketIOCreateClient('ws://host.hyperscaleapplicationshowcase.com:8070', {
+            transports: ['websocket']
+        }).connect(); // ? this should be apply by url
         this.initialize();
         /* this.initializeEmitting(); */
+    };
+
+    private randomMath(): number {
+        const ran = Math.random().toString().split('.')[1].split('');
+        const number = Number([ran[0], ran[1]].join(''));
+        console.log(number);
+        // getRandomSeed().toString().split('')[0] // ? [deprecated]
+        return number;
     };
 
     private initialize() {
@@ -51,7 +61,7 @@ class SpawnMinion {
     }
 
     private getUserData() {
-        this.user.username = `user_test@0${getRandomSeed().toString().split('')[0]}`;
+        this.user.username = `user_test@${this.randomMath()}`;
         this.user.socketId = this.socket.id!;
     };
 
@@ -79,6 +89,7 @@ class SpawnMinion {
 
     private listenOnUserOnline() {
         this.socket.on(SocketIOEmittion.USERS_ONLINE, (callback) => {
+            console.log('listenOnUserOnline', callback);
             console.log(JSON.stringify(callback, null, 4));
             this.usersOnline = callback.message || [];
             console.log('usersOnline', this.usersOnline.length);
