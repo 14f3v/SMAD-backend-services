@@ -4,6 +4,7 @@ import SocketIOEmittion from '@constants/socketIOemittion';
 import { hostname } from 'os';
 import Repositories, { Message } from '@repos/index';
 import RedisServices from '@services/redis';
+import type { TODO_TYPE } from 'src/types';
 
 let countSim = 1;
 
@@ -52,13 +53,13 @@ export default class SocketIOService {
         // connectionPools = connectionPools?.filter(({ socketId: SOCKETID }) => SOCKETID !== this._socketInstance.id);
     };
 
-    private jsonSerialize<T = undefined>(conext: any): T {
+    private jsonSerialize<T = undefined>(conext: TODO_TYPE): T {
         if (typeof conext == 'object') conext = JSON.stringify(conext);
         else conext = JSON.stringify(conext);
         return conext;
     }
 
-    private handlingInterNodeMessaging<T = undefined>(message: T | any) {
+    private handlingInterNodeMessaging<T = undefined>(message: T | TODO_TYPE) {
         // ? { username // destination username, socketId destination socketId, message } from source
         const senderUser = this.clientConnection.pools.find(({ socketId }) => socketId == this._socketInstance.id);
         const destinationReciver = this.clientConnection.pools.find(({ username, socketId }) => username == message.username && socketId == message.socketId);
@@ -104,8 +105,7 @@ export default class SocketIOService {
         // console.log('broadcastingUsersOnline connectionPools', connectionPools.map(({ ...element }) => element))
         this.messageEmittion = new MessageEmittion();
         this.messageEmittion.hostname = hostname();
-        this.messageEmittion.message = this.clientConnection.pools as any;
-        // this.messageEmittion.message = connectionPools as any;
+        this.messageEmittion.message = this.clientConnection.pools as TODO_TYPE;
         this._socketInstance.emit(SocketIOEmittion.USERS_ONLINE, this.messageEmittion); // ? emit back to socket
         this._socketInstance.broadcast.emit(SocketIOEmittion.USERS_ONLINE, this.messageEmittion); // ? broadcast emittion to another socket
     };
@@ -151,7 +151,7 @@ export default class SocketIOService {
     /**
      * websocketInterNodeEmission
      */
-    public websocketInterNodeEmission(socketIOemittion: SocketIOEmittion, message: any) {
+    public websocketInterNodeEmission(socketIOemittion: SocketIOEmittion, message: TODO_TYPE) {
         this.redisServices.listenOnInterNodeMeesageMessage(this.handlingInterNodeMessaging);
     };
 

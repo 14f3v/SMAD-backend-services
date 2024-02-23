@@ -1,5 +1,5 @@
-import type { BunFile } from "bun";
 import { Database } from "bun:sqlite";
+import type { TODO_TYPE } from "src/types";
 
 class Repositories {
     private databases: Database;
@@ -16,7 +16,7 @@ class Repositories {
             this.databases.query(initTableMessages).run();
             console.log({ ['DATABASES CONNECTED']: Boolean(this.databases) });
         }
-        catch (Exception: any) {
+        catch (Exception: TODO_TYPE) {
             throw new Error(Exception);
         }
     };
@@ -39,7 +39,7 @@ class Repositories {
             }
         }
 
-        catch (Exception: any) {
+        catch (Exception: TODO_TYPE) {
             throw new Error(Exception)
         }
         return isAddUserOK;
@@ -95,7 +95,7 @@ class Repositories {
         }
 
 
-        catch (Exception: any) {
+        catch (Exception: TODO_TYPE) {
             throw new Error(Exception)
         }
         return isAddUserOK;
