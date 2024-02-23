@@ -54,7 +54,7 @@ class RedisServices {
 };
 
 const redisConnection: any = /* appsettings.redisConnection */ {
-    url: ['redis://', Config.REDIS_HOST.toString(), ':', Config.REDIS_PORT.toString()].join(''),
+    url: ['redis://', Config.REDIS_HOST, ':', Config.REDIS_PORT].join(''),
 
 } as any;
 
