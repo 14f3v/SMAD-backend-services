@@ -1,4 +1,4 @@
-# hyperscale-application-showcase
+# A Showcase of Multiplexing scalability applications
 This project serves as a showcase for building scalable real-time applications using modern technologies. The serverside application is powered by bun.sh runtime and Socket.IO for efficient real-time communication. Redis is integrated to manage connection pools, enabling the system to handle millions of concurrent connections
 
 
