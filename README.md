@@ -11,19 +11,19 @@ clone git repository and cd to the main project directory and install dependenci
 
 incase of using [bun.sh](https://bun.sh)
 ```bash
-cd hyperscale-application-showcase
+cd multiplexing-applications-scalability-showcase
 bun install
 ```
 
 incase of using [npm]([https://npm.sh](https://www.npmjs.com))
 ```bash
-cd hyperscale-application-showcase
+cd multiplexing-applications-scalability-showcase
 npm install
 ```
 
 incase of using [yarn]([[https://npm.sh](https://www.npmjs.com](https://yarnpkg.com)))
 ```bash
-cd hyperscale-application-showcase
+cd multiplexing-applications-scalability-showcase
 yarn
 ```
 
