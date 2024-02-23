@@ -1,5 +1,6 @@
 import Config from '@constants/configs';
 import RedisEmittion from '@constants/redisEmittion';
+import SocketIOEmittion from '@constants/socketIOemittion';
 import { createClient, type RedisClientType } from 'redis';
 import InitializePool from './InitializePools';
 import DependenciesInjection from '@services/dependenciesInjection';
@@ -31,12 +32,11 @@ class RedisServices {
 
     public async broadcastingNewApplicationInstanceMember(conext?: any) {
         this.publisher.publish(RedisEmittion.LISTEN_MESSAGE, this.jsonSerialize(this.dependenciesInjection.applicationDetail));
-        // logger.info(this.jsonSerialize(this.dependenciesInjection.applicationDetail))
     }
 
     public async publishNewConnectionPoolMember() {
         console.log('[', 'publish', RedisEmittion.INITIALIZE_CONNECTION_POOL_MEMBER, ']', this.dependenciesInjection.applicationDetail);
-        await this.publisher?.publish(RedisEmittion.INITIALIZE_CONNECTION_POOL_MEMBER, 'hello');
+        this.publisher.publish(RedisEmittion.INITIALIZE_CONNECTION_POOL_MEMBER, 'hello');
     };
 
     private async subscriptionOnClientConnectionPool() {
@@ -50,6 +50,25 @@ class RedisServices {
         await this.publisher.connect();
         this.subscriber.on(RedisEmittion.LISTEN_MESSAGE, InitializePool);
         this.subscriptionOnClientConnectionPool();
+        // this.listenOnInterNodeMeesageMessage();
+    };
+
+    /**
+     * publishInterNodeMeesageMessage
+     */
+    public publishInterNodeMeesageMessage(socketIOemittion: SocketIOEmittion, message: any) {
+        console.log('[ [REDIS].[INTER_NODE].[EMIT]:', socketIOemittion, ']:', this.jsonSerialize(message));
+        this.publisher.publish(socketIOemittion, this.jsonSerialize(message));
+    };
+
+    /**
+     * listenOnInterNodeMeesageMessage
+     */
+    public listenOnInterNodeMeesageMessage<T = undefined>(callback?: T | any) {
+        this.subscriber.subscribe(SocketIOEmittion.CHAT_MESSAGE, (message) => {
+            console.log('[ [REDIS].[INTER_NODE].[RECIVED]:', SocketIOEmittion.CHAT_MESSAGE, ']:', this.jsonSerialize(message));
+            if (callback) callback(this.jsonSerialize(message));
+        });
     };
 };
 
