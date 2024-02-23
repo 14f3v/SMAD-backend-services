@@ -4,7 +4,7 @@ This project serves as a showcase for building scalable real-time applications u
 
 ## Articles
 you can reach out a full articles in article directory 
-- English article Click [here](https://github.com/14f3v/hyperscale-application-showcase/blob/main/articles/EN_Multiplexing_System_Architecture_Scalability.md)
+- [Multiplexing System Architecture Scalability](https://github.com/14f3v/hyperscale-application-showcase/blob/main/articles/EN_Multiplexing_System_Architecture_Scalability.md)
 
 ## Start project
 clone git repository and cd to the main project directory and install dependencies
@@ -28,7 +28,7 @@ yarn
 ```
 
 ### Start sevrer application
-There are so many condition to start a server application for example.
+There are so many condition to start a server application like run dry mode, run watch mode, run docker with watch mode and mount volumes. for example.
 
 if you would like to start server application as a dry mode, you can use
 ```bash
