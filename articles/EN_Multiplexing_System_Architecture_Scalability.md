@@ -4,7 +4,7 @@ In the dynamic landscape of modern technology, the demand for scalable real-time
 
 ## Description
 
-This project serves as a showcase for building scalable real-time applications using modern technologies. The serverside application is powered by bun.sh runtime and Socket.IO for efficient real-time communication. Redis is integrated to manage connection pools, enabling the system to handle millions of concurrent connections.
+This project serves as a showcase for building scalable real-time applications using modern technologies. The serverside application is powered by bun.sh runtime and Socket.IO for efficient real-time communication. Redis is integrated to manage connection pools between inter-node applications, enabling the system to handle millions of concurrent connections.
 The frontend application, developed with ReactJS and Socket.IO, facilitates interaction with the server via WebSocket protocols, ensuring seamless communication between clients and servers.
 
 
