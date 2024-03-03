@@ -1,29 +1,29 @@
-# A Showcase of Multiplexing scalability applications
+# A Showcase of Scalability Multiplexing Application Design Approach
 This project serves as a showcase for building scalable real-time applications using modern technologies. The serverside application is powered by bun.sh runtime and Socket.IO for efficient real-time communication. Redis is integrated to manage connection pools, enabling the system to handle millions of concurrent connections
 
 
 ## Articles
 you can reach out a full articles in article directory 
-- [Multiplexing System Architecture Scalability](https://github.com/14f3v/hyperscale-application-showcase/blob/main/articles/EN_Multiplexing_System_Architecture_Scalability.md)
+- [Scalability Multiplexing Application Design Approach](https://github.com/14f3v/SMAD-backend-services/blob/main/articles/EN_Multiplexing_System_Architecture_Scalability.md)
 
 ## Start project
 clone git repository and cd to the main project directory and install dependencies
 
 incase of using [bun.sh](https://bun.sh)
 ```bash
-cd multiplexing-applications-scalability-showcase
+cd SMAD-backend-services
 bun install
 ```
 
 incase of using [npm]([https://npm.sh](https://www.npmjs.com))
 ```bash
-cd multiplexing-applications-scalability-showcase
+cd SMAD-backend-services
 npm install
 ```
 
 incase of using [yarn]([[https://npm.sh](https://www.npmjs.com](https://yarnpkg.com)))
 ```bash
-cd multiplexing-applications-scalability-showcase
+cd SMAD-backend-services
 yarn
 ```
 
