@@ -1,5 +1,5 @@
 {
-  "name": "multiplexing-applications-scalability-showcase",
+  "name": "SMAD-backend-services",
   "version": "1.0.0",
   "license": "MIT",
   "author": "khemphet.souvannaphasy@gmail.com",
@@ -7,15 +7,15 @@
   "module": "index.ts",
   "type": "module",
   "repository": {
-    "url": "https://github.com/14f3v/multiplexing-applications-scalability-showcase.git"
+    "url": "https://github.com/14f3v/SMAD-backend-services.git"
   },
   "licenses": [
     {
-      "url": "https://github.com/14f3v/multiplexing-applications-scalability-showcase?tab=MIT-1-ov-file"
+      "url": "https://github.com/14f3v/SMAD-backend-services?tab=MIT-1-ov-file"
     }
   ],
   "bugs": {
-    "url": "https://github.com/14f3v/multiplexing-applications-scalability-showcase/issues/new"
+    "url": "https://github.com/14f3v/SMAD-backend-services/issues/new"
   },
   "devDependencies": {
     "@types/bun": "latest"
